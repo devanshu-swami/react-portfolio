@@ -10,6 +10,12 @@ const App = () => {
     link.rel = 'stylesheet';
     document.head.appendChild(link);
 
+    // Add Bootstrap JS
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js';
+    script.async = true;
+    document.body.appendChild(script);
+
     // Add Font Awesome
     const faLink = document.createElement('link');
     faLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
@@ -314,7 +320,7 @@ const App = () => {
         margin: 0.3rem;
       }
 
-      .project-link {
+     .project-link {
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
@@ -322,6 +328,9 @@ const App = () => {
         text-decoration: none;
         font-weight: 600;
         transition: all 0.3s;
+        cursor: pointer;
+        position: relative;
+        z-index: 10;
       }
 
       .project-link:hover {
@@ -448,6 +457,7 @@ const App = () => {
     return () => {
       document.head.removeChild(link);
       document.head.removeChild(faLink);
+      document.body.removeChild(script);
       document.head.removeChild(style);
     };
   }, []);
@@ -517,7 +527,7 @@ const Navbar = ({ scrollToSection, activeSection }) => {
         </button>
         <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul className="navbar-nav">
-            {['home', 'about', 'skills', 'experience', 'projects', 'contact'].map((item) => (
+            {['home', 'about', 'skills', 'projects', 'contact'].map((item) => (
               <li className="nav-item" key={item}>
                 <a
                   className={`nav-link ${activeSection === item ? 'active' : ''}`}
@@ -552,14 +562,14 @@ const Hero = ({ scrollToSection }) => {
               Responsible for API integration, UI/UX responsiveness, and backend logic optimization.
             </p>
             <div className="d-flex gap-3 justify-content-center flex-wrap">
-              <button 
+              <button
                 className="btn btn-primary-custom"
                 onClick={() => scrollToSection('projects')}
               >
                 View Projects <i className="fas fa-arrow-right ms-2"></i>
               </button>
-              <a 
-                href="mailto:adev80178@gmail.com" 
+              <a
+                href="mailto:adev80178@gmail.com"
                 className="btn btn-outline-custom"
                 style={{ textDecoration: 'none' }}
               >
@@ -591,16 +601,16 @@ const About = () => {
           <div className="col-lg-6">
             <div className="text-secondary">
               <p className="fs-5 mb-4">
-                I'm <span className="text-info fw-bold">Devanshu Swami</span>, a Full Stack Web Developer at 
+                I'm <span className="text-info fw-bold">Devanshu Swami</span>, a Full Stack Web Developer at
                 <span className="text-info"> ALINESOLUTION</span> with expertise in building scalable web applications.
               </p>
               <p className="fs-5 mb-4">
-                Currently working with <span className="text-info fw-bold">React.js, Node.js, Laravel</span>, and MySQL to develop 
-                and maintain full-stack applications. I specialize in API integration, responsive UI/UX design, 
+                Currently working with <span className="text-info fw-bold">React.js, Node.js, Laravel</span>, and MySQL to develop
+                and maintain full-stack applications. I specialize in API integration, responsive UI/UX design,
                 and backend optimization.
               </p>
               <p className="fs-5">
-                Graduated with a <span className="text-info">Bachelor of Computer Applications</span> from 
+                Graduated with a <span className="text-info">Bachelor of Computer Applications</span> from
                 Shree Jain College with 75% in 2024.
               </p>
             </div>
@@ -787,11 +797,11 @@ const Contact = () => {
     <section id="contact" className="py-5">
       <div className="container py-5">
         <h2 className="section-title text-center">Get In Touch</h2>
-        <div className="row g-4">
+        <div className="row">
           <div className="col-lg-12">
             <h3 className="text-white fw-bold mb-4">Let's Work Together</h3>
             <p className="text-secondary fs-5 mb-5">
-              I'm always interested in hearing about new projects and opportunities. 
+              I'm always interested in hearing about new projects and opportunities.
               Whether you have a question or just want to say hi, feel free to reach out!
             </p>
             <a href="mailto:adev80178@gmail.com" className="contact-link">
@@ -864,9 +874,9 @@ const Contact = () => {
 
 const WhatsAppButton = () => {
   return (
-    <a 
-      href="https://wa.me/918696282598" 
-      target="_blank" 
+    <a
+      href="https://wa.me/918696282598"
+      target="_blank"
       rel="noopener noreferrer"
       className="floating-whatsapp"
       title="Chat on WhatsApp"
