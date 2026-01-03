@@ -549,6 +549,16 @@ const Navbar = ({ scrollToSection, activeSection }) => {
 };
 
 const Hero = ({ scrollToSection }) => {
+  const handleDownloadResume = () => {
+    // Create a link element
+    const link = document.createElement('a');
+    link.href = '/Devanshu Full_Stack Developer.pdf'; // Path to your PDF file in the public folder
+    link.download = 'Devanshu_Swami_Resume.pdf'; // Name for the downloaded file
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <section id="home" className="hero-section">
       <div className="container">
@@ -567,6 +577,12 @@ const Hero = ({ scrollToSection }) => {
                 onClick={() => scrollToSection('projects')}
               >
                 View Projects <i className="fas fa-arrow-right ms-2"></i>
+              </button>
+              <button
+                className="btn btn-outline-custom"
+                onClick={handleDownloadResume}
+              >
+                Download Resume <i className="fas fa-download ms-2"></i>
               </button>
               <a
                 href="mailto:adev80178@gmail.com"
